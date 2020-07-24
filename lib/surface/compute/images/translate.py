@@ -32,7 +32,7 @@ _OS_CHOICES = {'debian-8': 'debian/translate_debian_8.wf.json',
                'windows-2016': 'windows/translate_windows_2016.wf.json',
               }
 _WORKFLOWS_URL = ('https://github.com/GoogleCloudPlatform/compute-image-tools/'
-                  'tree/master/daisy_workflows/image_import')
+                  'tree/main/daisy_workflows/image_import')
 
 
 @base.ReleaseTracks(base.ReleaseTrack.ALPHA)
