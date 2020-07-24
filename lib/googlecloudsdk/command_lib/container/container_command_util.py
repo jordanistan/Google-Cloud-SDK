@@ -38,13 +38,13 @@ def _NodePoolFromCluster(cluster, node_pool_name):
       node_pool_name))
 
 
-def ClusterUpgradeMessage(cluster, master=False, node_pool=None,
+def ClusterUpgradeMessage(cluster, main=False, node_pool=None,
                           new_version=None):
   """Get a message to print during gcloud container clusters upgrade.
 
   Args:
     cluster: the cluster object.
-    master: bool, if the upgrade applies to the master version.
+    main: bool, if the upgrade applies to the main version.
     node_pool: str, the name of the node pool if the upgrade is for a specific
         node pool.
     new_version: str, the name of the new version, if given.
@@ -59,10 +59,10 @@ def ClusterUpgradeMessage(cluster, master=False, node_pool=None,
   if new_version:
     new_version_message = 'version [{}]'.format(new_version)
   else:
-    new_version_message = 'master version'
-  if master:
-    node_message = 'Master'
-    current_version = cluster.currentMasterVersion
+    new_version_message = 'main version'
+  if main:
+    node_message = 'Main'
+    current_version = cluster.currentMainVersion
   elif node_pool:
     node_message = 'All nodes in node pool [{}]'.format(node_pool)
     node_pool = _NodePoolFromCluster(cluster, node_pool)
@@ -164,5 +164,5 @@ def ParseUpdateOptionsBase(args, locations):
       max_nodes=args.max_nodes,
       node_pool=args.node_pool,
       locations=locations,
-      enable_master_authorized_networks=args.enable_master_authorized_networks,
-      master_authorized_networks=args.master_authorized_networks)
+      enable_main_authorized_networks=args.enable_main_authorized_networks,
+      main_authorized_networks=args.main_authorized_networks)
