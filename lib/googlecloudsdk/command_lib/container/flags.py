@@ -124,7 +124,7 @@ def AddClusterVersionFlag(parser, suppressed=False, help=None):  # pylint: disab
   """Adds a --cluster-version flag to the given parser."""
   if help is None:
     help = """\
-The Kubernetes version to use for the master and nodes. Defaults to
+The Kubernetes version to use for the main and nodes. Defaults to
 server-specified.
 
 The default Kubernetes version is available using the following command.
@@ -623,38 +623,38 @@ def AddTagsFlag(parser, help_text):
       help=help_text)
 
 
-def AddMasterAuthorizedNetworksFlags(parser, update_group=None, hidden=False):
-  """Adds Master Authorized Networks related flags to parser.
+def AddMainAuthorizedNetworksFlags(parser, update_group=None, hidden=False):
+  """Adds Main Authorized Networks related flags to parser.
 
-  Master Authorized Networks related flags are:
-  --enable-master-authorized-networks --master-authorized-networks.
+  Main Authorized Networks related flags are:
+  --enable-main-authorized-networks --main-authorized-networks.
 
   Args:
     parser: A given parser.
     update_group: An optional group of mutually exclusive flag options
-        to which an --enable-master-authorized-networks flag is added.
+        to which an --enable-main-authorized-networks flag is added.
     hidden: If true, suppress help text for added options.
   """
-  group = parser.add_argument_group('Master Authorized Networks')
+  group = parser.add_argument_group('Main Authorized Networks')
   authorized_networks_group = group if update_group is None else update_group
   authorized_networks_group.add_argument(
-      '--enable-master-authorized-networks',
+      '--enable-main-authorized-networks',
       default=None if update_group else False,
       help='Allow only Authorized Networks (specified by the '
-      '`--master-authorized-networks` flag) and Google Compute Engine Public '
-      'IPs to connect to Kubernetes master through HTTPS. By default public  '
-      'internet (0.0.0.0/0) is allowed to connect to Kubernetes master through '
+      '`--main-authorized-networks` flag) and Google Compute Engine Public '
+      'IPs to connect to Kubernetes main through HTTPS. By default public  '
+      'internet (0.0.0.0/0) is allowed to connect to Kubernetes main through '
       'HTTPS.',
       hidden=hidden,
       action='store_true')
   group.add_argument(
-      '--master-authorized-networks',
+      '--main-authorized-networks',
       type=arg_parsers.ArgList(min_length=1, max_length=10),
       metavar='NETWORK',
       help='The list of external networks (up to 10) that are allowed to '
-      'connect to Kubernetes master through HTTPS. Specified in CIDR notation '
+      'connect to Kubernetes main through HTTPS. Specified in CIDR notation '
       '(e.g. 1.2.3.4/30). Can not be specified unless '
-      '`--enable-master-authorized-networks` is also specified.',
+      '`--enable-main-authorized-networks` is also specified.',
       hidden=hidden)
 
 
@@ -667,12 +667,12 @@ def AddNetworkPolicyFlags(parser, hidden=False):
       hidden=hidden,
       help='Enable network policy enforcement for this cluster. If you are '
       'enabling network policy on an existing cluster the network policy '
-      'addon must first be enabled on the master by using '
+      'addon must first be enabled on the main by using '
       '--update-addons=NetworkPolicy=ENABLED flag.')
 
 
 def AddPrivateClusterFlags(parser, hidden=False):
-  """Adds --private-cluster flag to parser and --master-ipv4-cidr to parser."""
+  """Adds --private-cluster flag to parser and --main-ipv4-cidr to parser."""
   group = parser.add_argument_group('Private Clusters')
   group.add_argument(
       '--private-cluster',
@@ -683,8 +683,8 @@ def AddPrivateClusterFlags(parser, hidden=False):
       required=True,
       hidden=hidden)
   group.add_argument(
-      '--master-ipv4-cidr',
-      help=('IPv4 CIDR range to use for the master network.  This should be a '
+      '--main-ipv4-cidr',
+      help=('IPv4 CIDR range to use for the main network.  This should be a '
             '/28 and should be used in conjunction with the --private-cluster '
             'flag.'),
       default=None,
