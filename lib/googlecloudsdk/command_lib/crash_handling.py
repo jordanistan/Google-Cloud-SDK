@@ -78,7 +78,7 @@ ERROR_PROJECT = 'cloud-sdk-user-errors'
 ERROR_API_KEY = 'AIzaSyCUuWyME_r4XylltWNeydEjKSkgXkvpVyU'
 SERVICE = 'gcloud'
 CRASH_PROJECT = 'cloud-sdk-crashes'
-CRASH_API_KEY = 'AIzaSyAp4DSI_Z3-mK-B8U0t7GE34n74OWDJmak'
+CRASH_API_KEY = 'REPLACE_WITH_KEY'
 
 
 def _GetReportingClient(is_crash=True):
