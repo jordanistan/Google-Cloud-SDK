@@ -9,3 +9,4 @@ pyyaml
 webapp2
 WebOb
 werkzeug>=3.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
+sqlparse>=0.5.0 # not directly required, pinned by Snyk to avoid a vulnerability
