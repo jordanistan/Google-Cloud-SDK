@@ -4,3 +4,4 @@ funcsigs>=1;python_version<"3.3"
 # unversioned.
 pbr>=0.11
 six>=1.9
+setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
